@@ -7,19 +7,17 @@ const listingSchema = new Schema ({
         required : true ,
     },
     description : String ,
+      
     image: {
-         type : Object ,
-         required : true ,
-        default: 
-            "https://unsplash.com/photos/brown-and-black-wooden-house-TiVPTYCG_3E",
-        set : (v) => 
+         type: String,
+         default:
+              "https://images.unsplash.com/photo-1234567890123?ixid=xyz&auto=format&fit=crop&w=500&q=60",
+         set: (v) => 
             v === ""
          ? "https://unsplash.com/photos/brown-and-black-wooden-house-TiVPTYCG_3E"
          : v,
-        // imageUrl:
-        //  { type: String, default: "https://unsplash.com/photos/default-image" },
-
     },
+    
     price : Number ,
     location : String,
     country : String ,
@@ -27,3 +25,4 @@ const listingSchema = new Schema ({
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing ;
+

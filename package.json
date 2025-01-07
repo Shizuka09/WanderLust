@@ -1,9 +1,10 @@
 {
   "name": "wanderlust",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "Akriti",
@@ -15,5 +16,8 @@
     "express": "^4.21.1",
     "method-override": "^3.0.0",
     "mongoose": "^8.8.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }

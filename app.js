@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb+srv://wander-lust:VVuigWo4IAr4fLNv@cluster0.7cqzx.mongodb.net/";
 
 main()
    .then (() => {
@@ -51,10 +52,16 @@ app.get("/listings/:id" , async (req,res) =>{
 });
 
    //CREATE ROUTE 
-   app.post("/listings", async (req, res) => {
-    const newListing = new Listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");
+   app.post("/listings", async (req, res,next) => {
+    try{
+      const newListing = new Listing(req.body.listing);
+      await newListing.save();
+      res.redirect("/listings");
+    }
+    catch(err){
+      next(err);
+    }
+
 });
 
    //EDIT ROUTE 
@@ -93,6 +100,10 @@ app.delete("/listings/:id", async(req,res) => {
 //     console.log("sample was saved");
 //     res.send("successful testing");
 // });
+
+app.use((err,req,res,next) =>{
+  res.send("Something went wrong!");
+});
 
 app.listen(8080,() =>{
     console.log("server is listening to port 8080");

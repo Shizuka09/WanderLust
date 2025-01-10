@@ -2,21 +2,26 @@
  <div class="row mt-3">
      <div class="col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" novalidate class="needs-validation">
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
         <input name="listing[title]"
          placeholder="Add a catchy itle"
           type="text"
           class="form-control"
+          required
          />
+         <div class="valid-feedback">Title looks good!</div>
         </div>
 
       <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+        <label for="description" class="form-label" >Description</label>
         <textarea name="listing[description]"
-         class="form-control">
-        </textarea>
+         class="form-control" 
+         required 
+         ></textarea>
+         <div class="invalid-feedback">Please enter a short description</div>
+
       </div>
 
       <div class="mb-3">
@@ -25,6 +30,7 @@
          placeholder="enter url/link"
           type="text"
           class="form-control"
+          required
           >
       </div>
 
@@ -33,8 +39,9 @@
         <label for="price" class="form-label">Price</label>
     <input name="listing[price]"
      placeholder="2000"
-      type="number"
-      class="form-control">
+     type="number"
+      class="form-control" required>
+      <div class="invalid-feedback">Please enter valid Price</div>
        </div>      
 
      <div class="mb-3 col-8">
@@ -42,7 +49,8 @@
      <input name="listing[location]"
       placeholder="Jodhpur,Rajasthan" 
       type="text"
-      class="form-control">
+      class="form-control " required>
+      <div class="invalid-feedback">Please enter valid Location</div>
       </div>
     </div>
 
@@ -51,7 +59,8 @@
         <input name="listing[country]" 
         placeholder="India"
          type="text"
-         class="form-control">
+         class="form-control" required>
+         <div class="invalid-feedback">Please enter valid Country</div>
       </div>
 
         <button class="btn btn-dark add-btn mt-3">Add</button>

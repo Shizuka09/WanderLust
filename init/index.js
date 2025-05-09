@@ -21,7 +21,13 @@ main()
     initData.data =  initData.data.map((obj) => ({
       ...obj ,
       owner: "679a39d35f79d9c8b43af720",
-      image: obj.image.url,
+      // image: obj.image.url,
+      // image: obj.image?.url || "",
+      image: {
+          filename: obj.image?.filename || "",
+         url: obj.image?.url || ""
+          
+     },
    }));
     await Listing.insertMany(initData.data);
     console.log("data was initalized");

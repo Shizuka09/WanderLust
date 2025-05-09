@@ -11,14 +11,11 @@ const mongoose = require("mongoose");
     description : String ,
       
     image: {
-         type: String,
-         default:
-              "https://images.unsplash.com/photo-1234567890123?ixid=xyz&auto=format&fit=crop&w=500&q=60",
-         set: (v) => 
-            v === ""
-         ? "https://unsplash.com/photos/brown-and-black-wooden-house-TiVPTYCG_3E"
-         : v,
-    },
+        // type : String,
+        // url : String ,
+        // filename : String,
+        url: { type: String },      
+        filename: { type: String }     },
     
     price : Number ,
     location : String,

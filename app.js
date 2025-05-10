@@ -3,6 +3,7 @@ if(process.env.NODE_ENV !="PRODUCTION"){
 }
 
 const express = require("express");
+const ejsLayouts = require('ejs-layouts');
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
@@ -39,6 +40,7 @@ main()
 
 app.set("view engine" , "ejs");
 app.set("views" , path.join(__dirname,"views"));
+// app.use(ejsLayouts);
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
@@ -47,7 +49,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 const store = MongoStore.create({
   mongoUrl : dbUrl,
   crypto : {
-    sceret :process.env.SCERET, 
+    sceret :process.env.SECRET, 
   },
   touchAfter : 24 * 3600,
 });
@@ -58,7 +60,7 @@ store.on("error" , () =>{
 
 const sessionOptions = {
   store,
-  secret: process.env.SCERET,  
+  secret: process.env.SECRET,  
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -91,16 +93,6 @@ app.use((req,res,next) => {
   res.locals.currUser = req.user;
   next();
 });
-
-// app.get("/demouser", async(req,res) =>{
-//   let fakeUser = new User ({
-//     email : "shizuka09@gmail.com",
-//     username: "Shizuka09"
-//   });
-
-//   let registeredUser = await User.register(fakeUser, "helloworld");
-//   res.send(registeredUser);
-// });
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews" , reviewRouter);

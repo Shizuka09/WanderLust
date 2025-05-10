@@ -11,9 +11,6 @@ const mongoose = require("mongoose");
     description : String ,
       
     image: {
-        // type : String,
-        // url : String ,
-        // filename : String,
         url: { type: String },      
         filename: { type: String }     },
     
